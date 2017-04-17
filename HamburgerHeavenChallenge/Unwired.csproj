@@ -180,6 +180,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data.RT">
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.7.9\Assemblies\RT\MySql.Data.RT.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

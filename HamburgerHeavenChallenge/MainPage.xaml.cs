@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,16 +25,29 @@ namespace HamburgerHeavenChallenge
     /// </summary>
     public sealed partial class MainPage : Page
     {
-      public MainPage()
-      {
-        this.InitializeComponent();
-        BackButton.Visibility = Visibility.Collapsed;
-        MyFrame.Navigate(typeof(Financial));
-        TitleTextBlock.Text = "Home";
-        Financial.IsSelected = true;
-    }
+
+        public string DeviceManufacturer { get; set; }
+        public string DeviceModel { get; set; }
+        public string device_name { get; set; }
+        public MainPage()
+        {
+            this.InitializeComponent();
+            BackButton.Visibility = Visibility.Collapsed;
+            MyFrame.Navigate(typeof(Financial));
+            TitleTextBlock.Text = "Home";
+            Financial.IsSelected = true;
+            DeviceInformation();
+        }
 
        
+        public void DeviceInformation()
+        {
+            EasClientDeviceInformation eas = new EasClientDeviceInformation();
+            DeviceManufacturer = eas.SystemManufacturer;
+            DeviceModel = eas.SystemProductName;
+            device_name = DeviceManufacturer + " " + DeviceModel;
+        }
+
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
       {
         MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
